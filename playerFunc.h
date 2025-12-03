@@ -9,9 +9,6 @@ Player classChoose(Player player,Display screen){
 
     const int classSize = 5;
 
-    player.current = 0;
-
-
     int option,newNum;
 
     do{

@@ -5,6 +5,9 @@
 #include "classes.h"
 #include "playerFunc.h"
 
+#include "bossInit.h"
+#include "bossAttack.h"
+
 #include <windows.h>
 
 using namespace std;
@@ -29,6 +32,21 @@ void clearScreen(){
     // cout << "\x1B[2J\x1B[H";
     system("cls");
 
+}
+
+Player bossFight(Player player){
+
+    //pick a boss in the boss list
+    //initilaize the fight
+
+    //turns
+    //each turn check lose condition & win condition
+    //player actions
+    //boss attacks
+    //next turn
+
+
+    return player;
 }
 
 
@@ -77,6 +95,7 @@ int main(){
 
         //screen clear
         //Boss
+        bossFight(player);
 
         player = cellCheck(player);
         turnNumber++;

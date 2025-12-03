@@ -51,13 +51,13 @@ struct Player{
     List playerList;
     int listLength;
     int remainingCell;
-    int current;
+    int current = 0;
     
-    int level;
+    int level = 1;
     int power;
     playerClass pClass;
     
-    int money;
+    int money = 8;
 
     // Display screen;
 };
