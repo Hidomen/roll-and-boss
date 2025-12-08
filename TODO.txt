@@ -1,0 +1,14 @@
+Intro Screen
+
+BEGINNING UI
+
+INITIALIZE GAME/RUN
+
+
+//CIRCULAR QUEUE
+
+// 1 2 3 4 5 6 
+// front -- rear
+
+// enum phase ROLL, SHOP, ACTION, BOSS -- Random Encounter
+// Number Shop %70, Attribute and Vampire Shop %30

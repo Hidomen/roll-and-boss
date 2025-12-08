@@ -1,4 +1,3 @@
-//different type of boss
 #include "classes.h"
 
 
@@ -9,7 +8,7 @@ struct Boss{
     bool isRelease = false;
 };
 
-int Scale[] = {1.25,1.5,1.75,2};
+float Scale[] = {1.25,1.5,1.75,2};
 
 #define BASIC 0
 #define MEDIUM 1
@@ -24,17 +23,15 @@ Boss bossInit(Boss boss, Player player, int powerScale, int healthScale){
     return boss;
 }
 
-Boss init_oddCold(Player player){
-    Boss oddcold;
-    oddcold = bossInit(oddcold, player, MEDIUM, HARD);
+// Boss initOddCold (Player player){
+//     Boss oddcold = bossInit(oddcold, player, MEDIUM, HARD);
 
 
-    return oddcold;
-}
+//     return oddcold;
+// }
 
-Boss init_evengelion(Player player){
-    Boss evengelion;
-    evengelion= bossInit(evengelion,player,MEDIUM,HARD);
+// Boss evengelion(Player player){
+//     Boss evengelion = bossInit(evengelion,player,MEDIUM,HARD);
 
-    return evengelion;
-}
+//     return evengelion;
+// }

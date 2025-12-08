@@ -1,8 +1,18 @@
 #include "classes.h"
 #include "inGameClasses.h"
+#include "funcs.h"
 
 
+#ifndef PLAYERFUNCS_H
+#define PLAYERFUNCS_H
 
+
+Player nextCurrent(Player player){
+    
+    player.current = ((player.current + 1) % player.listLength);
+    
+    return player;
+}
 
 
 Player classChoose(Player player,Display screen){
@@ -66,27 +76,21 @@ Player classChoose(Player player,Display screen){
 
 Player roll(Player player, Display screen, int max){
     
-    int rolledNum = rand() % max;
+    int rolledNum = getRandom(max);
     
     screen.roll(player,rolledNum);
-    
-    
+        
     
     int rollDecision;
     //validity check (make a warning message)
-    do{
-        cin >> rollDecision;
-
-    }while(!(rollDecision == 1 || rollDecision == 0));
-
+    rollDecision = getInput(rollDecision,0,1);
 
 
     if(rollDecision == 1){
-        
         player.playerList.arr[player.current] = rolledNum;
-        player.current = player.playerList.nextCurrent(player.listLength,player.current);
     }
-
+    player = nextCurrent(player);
+    
     return player;
 }
 
@@ -100,6 +104,15 @@ Player cellCheck(Player player){
         }
     }
 
-
     return player;
 }
+
+
+bool isAlive(Player player){
+    if(player.remainingCell <= 0){
+        return false;
+    }
+    return true;
+}
+
+#endif //PLAYERFUNCS_H

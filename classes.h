@@ -2,7 +2,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-
 using namespace std;
 
 
@@ -10,7 +9,6 @@ using namespace std;
 #define CLASSES_H
 
 typedef enum {Oddian = 1,Evengelion,Prime,Random,OneNumMan,Listed} playerClass;
-
 
 //there should be better way to find and use their index numbers 
 #define ODDIAN_INDEX 1
@@ -25,22 +23,13 @@ typedef enum {Oddian = 1,Evengelion,Prime,Random,OneNumMan,Listed} playerClass;
 #define MAX_NUMBER 100
 
 
-
 class List{
 
     public:
-    
         int front,rear;
-    
         int arr[MAX_LENGTH];
         
         
-
-        int nextCurrent(int listSize,int current){
-            return ((current + 1) % listSize);
-        }
-
-
 };
 
 
@@ -63,12 +52,8 @@ struct Player{
 };
 
 
-
-
-
 class Display{
     //before every display operation clear the screen
-
     public:
         void intro(){
             
@@ -87,67 +72,69 @@ class Display{
 
             cout << "UR LIFE LIST" << endl;
 
-
             for(int i = 0; i < player.listLength; i++){ //just for debugging
-                if(i % 5 == 0 && i != 0){
+                if(i % 5 == 0 && i != 0){ // to have more clear visual ends line for every 5
                     cout << endl;
                 }
-
                 cout << player.playerList.arr[i] << " ";
             }
             cout << endl;
         }
 
         void turn(Player player, int turnNumber){
-            cout << "TURN: " << turnNumber << endl << endl << endl;
-            
-            list(player);
 
+            cout << "TURN: " << turnNumber << endl << endl << endl;
+            list(player);
         }
 
         void shop(){
 
+        }
 
+        void numberShop(Player player, int slots[]){
 
+            cout << endl << endl;
+            for(int i = 0; i < 3; i++){
+
+                cout << "[  " << slots[i] << "  ]";
+            }
+            cout << endl;
+            cout << "CURRENT: " << player.current+1 << " -----> " << player.playerList.arr[player.current] << endl;
+            cout << "PICK ONE OF THESE NUMBERS: [1,2,3]" << endl;
+            cout << "> ";
         }
 
         void bossfight(){
 
-
-
         }
 
         void allClass(){
-
             //print every option for classes
         }
 
         void pClass(Player player){
                 //elim ilen yapcam artık enum printlemiyor direkt
-            switch (player.pClass)
-            {
-            case ODDIAN_INDEX:
-                cout << "Oddian";
-                break;
+            switch (player.pClass){
+
+                case ODDIAN_INDEX:
+                    cout << "Oddian";
+                    break;
             
-            case EVENGELION_INDEX:
-                break;
+                case EVENGELION_INDEX:
+                    break;
             
-            case PRIME_INDEX:
-                break;
+                case PRIME_INDEX:
+                    break;
 
-            case RANDOM_INDEX:
-                break;
+                case RANDOM_INDEX:
+                    break;
 
-            case ONENUMMAN_INDEX:
-                break;
+                case ONENUMMAN_INDEX:
+                    break;
 
-            case LISTED_INDEX:
-                break;
-
-            
+                case LISTED_INDEX:
+                    break;            
             }
-
         }
 
         void classChoice(Player player,Display screen){
@@ -156,11 +143,10 @@ class Display{
             screen.pClass(player);
             cout << "  Class..." << endl;
             cout << "I wish you luck" << endl << endl;
-
         }
 
-
         void roll(Player player, int rolledNum){
+            
             cout << endl << "NEW NUMBER IS " << rolledNum << endl;
             cout << "DO YOU WANT TO ADD IT TO YOUR LIST?" << endl;
             cout << "Instead of " << player.playerList.arr[player.current]  << endl;
@@ -171,5 +157,4 @@ class Display{
 
 };
 
-
-#endif CLASSES_H
+#endif //CLASSES_H

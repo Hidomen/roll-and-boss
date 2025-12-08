@@ -1,22 +1,24 @@
 #include "classes.h"
+#include "funcs.h"
 
+
+#ifndef INGAME_CLASSES_H
+#define INGAME_CLASSES_H
 
 Player cOddian(Player player){
-    int newNum;
-    
+    int newNum; 
     player.listLength = 10;
 
     //filling with odds
     for(int i = 0; i < player.listLength; i++){      
 
-        newNum = rand() % MAX_NUMBER;
+        newNum = getRandom(MAX_NUMBER);
         while(newNum % 2 == 0){
-            newNum = rand() % MAX_NUMBER;
+            newNum = getRandom(MAX_NUMBER);
         } // try 'till its odd
 
         player.playerList.arr[i] = newNum;
     }
-
 
     return player;
 }
@@ -28,9 +30,9 @@ Player cEvengelion(Player player){
     //filling with evens
     for(int i = 0; i < player.listLength; i++){      
 
-        newNum = rand() % MAX_NUMBER;
+        newNum = getRandom(MAX_NUMBER);
         while(newNum % 2 == 1){
-            newNum = rand() % MAX_NUMBER;
+            newNum = getRandom(MAX_NUMBER);
         } // try 'till its even
 
         player.playerList.arr[i] = newNum;
@@ -43,7 +45,7 @@ Player cFullRandom(Player player){
     player.listLength = 10;
 
     for(int i = 0; i < player.listLength; i++){
-        player.playerList.arr[i] = rand() % MAX_NUMBER;
+        player.playerList.arr[i] = getRandom(MAX_NUMBER);
     }
 
 
@@ -56,14 +58,14 @@ Player cPowerFull(Player player){
     player.listLength = 1;
     player.power = player.power * 5;
     
-    player.playerList.arr[0] = rand() % MAX_NUMBER;
+    player.playerList.arr[0] = getRandom(MAX_NUMBER);
 }
 
 Player cListed(Player player){
 
     player.listLength = 20;
 
-    for(int i=0; i < player.listLength;i++){
+    for(int i = 0; i < player.listLength; i++){
         player.playerList.arr[i] = i + 1;
     }
 
@@ -81,3 +83,4 @@ Player cListed(Player player){
 
 //Herd
 
+#endif //INGAME_CLASSES_H
