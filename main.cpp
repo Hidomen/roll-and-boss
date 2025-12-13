@@ -6,7 +6,7 @@
 #include "classes.h"
 #include "playerFuncs.h"
 
-// #include "bossInit.h"
+#include "bossFight.h"
 #include "bossAttack.h"
 
 #include "shop.h"
@@ -14,20 +14,6 @@
 using namespace std;
 
 
-Player bossFight(Player player){
-
-    //pick a boss in the boss list
-    //initilaize the fight
-
-    //turns
-    //each turn check lose condition & win condition
-    //player actions
-    //boss attacks
-    //next turn
-
-
-    return player;
-}
 
 
 int main(){
@@ -47,28 +33,27 @@ int main(){
     screen.list(player);
 
     //TURNS
-    int turnNumber = 1;
     while(isAlive(player)){
-        clearScreen();
         //start of a turn
-        screen.turn(player, turnNumber);
-        
+
         //Roll a number
+        updateScreen(player, screen);
         player = roll(player, screen, MAX_NUMBER);
-        screen.list(player);
 
-        //screen clear
-        player = shop(player, screen);
 
-        //screen clear
+        updateScreen(player, screen);
+        player = shop(player,screen);
+
+        // clearScreen();
         //Action
         //player = action(player, screen);
 
-        //screen clear
+        updateScreen(player, screen);
+        player = bossFight(player, screen);
         // bossFight(player, screen);
 
         player = cellCheck(player);
-        turnNumber++;
+        player.turnNumber++;
     }
 
     return 0;

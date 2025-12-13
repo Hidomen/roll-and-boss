@@ -16,19 +16,39 @@ bool isVampActive(Player player){
 
 Player numberShop(Player player, Display screen){
     int slots[3];
-
-    slots[0] = getRandom(MAX_NUMBER);
-    slots[1] = getRandom(MAX_NUMBER);
-    slots[2] = getRandom(MAX_NUMBER);
-
-    //selection
-    screen.numberShop(player, slots);
-    
     int selection;
-    selection = getInput(selection, 1, 3);
 
-    player.playerList.arr[player.current] = slots[selection - 1];
-    player = nextCurrent(player);
+
+    const int numberCost = 3;
+
+    if(player.money >= numberCost){
+        
+        slots[0] = getRandom(MAX_NUMBER);
+        slots[1] = getRandom(MAX_NUMBER);
+        slots[2] = getRandom(MAX_NUMBER);
+        
+        //selection
+        screen.numberShop(player, slots);
+        
+        selection = getInput(selection, 0, 3);
+
+        //didnt select any of the number and didnt update current
+        if(selection == 0){
+            return player;
+        } else { //purchased
+            
+            player.playerList.arr[player.current] = slots[selection - 1];
+            
+            player.money = player.money - numberCost;
+            player = nextCurrent(player);
+        }
+
+    }else{
+
+
+        cout << "GET THE HELL OUT OF HERE FILTHY POOR" << endl;
+        getInput(selection, 1, 1);
+    }
 
     return player;
 }

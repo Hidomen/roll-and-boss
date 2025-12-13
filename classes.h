@@ -1,6 +1,7 @@
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
+#include <string>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ class List{
 
 struct Player{
 
-    char *name;
+    string name = "traveler";
 
     List playerList;
     int listLength;
@@ -48,12 +49,14 @@ struct Player{
     
     int money = 8;
 
+    string nextBoss;
+    
+    int turnNumber = 1;
     // Display screen;
 };
 
 
 class Display{
-    //before every display operation clear the screen
     public:
         void intro(){
             
@@ -69,6 +72,7 @@ class Display{
 
         void list(Player player){
             //check if its empty or not
+            
 
             cout << "UR LIFE LIST" << endl;
 
@@ -81,11 +85,6 @@ class Display{
             cout << endl;
         }
 
-        void turn(Player player, int turnNumber){
-
-            cout << "TURN: " << turnNumber << endl << endl << endl;
-            list(player);
-        }
 
         void shop(){
 
@@ -153,6 +152,9 @@ class Display{
             cout << endl << endl << "1 FOR YES, 0 FOR NO" << endl;
             cout << "> ";
         }
+
+
+        //clears the screen and then rewrites the infos
 
 
 };

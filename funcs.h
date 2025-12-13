@@ -28,4 +28,32 @@ void clearScreen(){
 
 }
 
+
+void updateScreen(Player player, Display screen){
+    clearScreen();
+
+    
+    cout << "TURN: " << player.turnNumber << endl << endl << endl;
+    screen.list(player);
+    
+    //player info
+    cout << "____________________________________________________________________________________" << endl;
+    cout << "NAME: " << player.name;
+    cout << "     ";
+    cout << "MONEY: " << player.money;
+    cout << "     ";
+    cout << "POWER: " << player.power;
+    cout << "     ";
+    
+    cout << "LIST: ";
+    for(int i = 0; i < player.listLength; i++){
+
+        cout << player.playerList.arr[i];
+    }
+    cout << "     ";
+
+    cout << "NEXT BOSS: " << player.nextBoss;
+    cout << endl;
+}
+
 #endif //FUNCS_H

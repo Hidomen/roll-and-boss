@@ -1,5 +1,5 @@
 #include "classes.h"
-#include "bossInit.h"
+#include "bossFight.h"
 
 
 Player attack_OddCold(Player player,Boss oddcold){
