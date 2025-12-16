@@ -3,7 +3,7 @@
 #include "classes.h"
 #include "funcs.h"
 #include "playerFuncs.h"
-
+#include "display.h"
 
 bool isVampActive(Player player){
     for(int i = 0; i < player.listLength; i++){
@@ -14,7 +14,7 @@ bool isVampActive(Player player){
     return false;
 }
 
-Player numberShop(Player player, Display screen){
+Player numberShop(Player player){
     int slots[3];
     int selection;
 
@@ -28,7 +28,7 @@ Player numberShop(Player player, Display screen){
         slots[2] = getRandom(MAX_NUMBER);
         
         //selection
-        screen.numberShop(player, slots);
+        displayNumberShop(player, slots);
         
         selection = getInput(selection, 0, 3);
 
@@ -56,14 +56,14 @@ Player numberShop(Player player, Display screen){
 
 #define P_NUMBER_SHOP 70
 //
-Player shop(Player player, Display screen){
+Player shop(Player player){
     bool vamp = isVampActive(player);
 
     int probability = getRandom(100); //100 based probability
 
     if(probability < P_NUMBER_SHOP){
         //classic number shop ~ choose a new to add it current index
-        player = numberShop(player, screen);
+        player = numberShop(player);
         // player.playerList.arr[player.current] = selected;
     } else {
         //attrib or vamp shop

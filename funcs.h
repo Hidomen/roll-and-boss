@@ -1,6 +1,8 @@
 #include <iostream>
 #include <time.h>
 
+#include "display.h"
+
 using namespace std;
 
 #ifndef FUNCS_H
@@ -22,38 +24,40 @@ int getInput(int input, int minValue, int maxValue){
 }
 
 
-void clearScreen(){
-    // cout << "\x1B[2J\x1B[H";
-    system("cls");
-
-}
 
 
-void updateScreen(Player player, Display screen){
-    clearScreen();
 
-    
-    cout << "TURN: " << player.turnNumber << endl << endl << endl;
-    screen.list(player);
-    
-    //player info
-    cout << "____________________________________________________________________________________" << endl;
-    cout << "NAME: " << player.name;
-    cout << "     ";
-    cout << "MONEY: " << player.money;
-    cout << "     ";
-    cout << "POWER: " << player.power;
-    cout << "     ";
-    
-    cout << "LIST: ";
-    for(int i = 0; i < player.listLength; i++){
 
-        cout << player.playerList.arr[i];
+
+
+std::string getString(HANDLE stdHandle, const int limit, int xPos, int yPos){
+    SetConsoleCursorPosition(stdHandle,{(short)xPos,(short)yPos});
+
+    std::string text(limit, ' ');
+    int letter = 0;
+
+    while(!GetAsyncKeyState(VK_RETURN)){
+
+        for(int i= 0; i < 256; i++){
+            if(GetAsyncKeyState(i) & 0b1 && letter < limit){
+                cout << (char)i;
+                text[letter] = (char)i;
+                letter++;
+                xPos++;
+            }
+            if(GetAsyncKeyState(VK_BACK) & 0b1 && letter > 0){
+                xPos--;
+                SetConsoleCursorPosition(stdHandle, {(short)(xPos),(short)yPos});
+                cout << ' ';
+                SetConsoleCursorPosition(stdHandle, {(short)(xPos),(short)yPos});
+
+                letter--;
+            }
+        }
     }
-    cout << "     ";
+    text.resize(letter);
 
-    cout << "NEXT BOSS: " << player.nextBoss;
-    cout << endl;
+    return text;
 }
 
 #endif //FUNCS_H

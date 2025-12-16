@@ -4,7 +4,7 @@
 #include <windows.h>
 
 #include "classes.h"
-#include "playerFunc.h"
+#include "playerFuncs.h"
 
 // #include "bossInit.h"
 #include "bossAttack.h"

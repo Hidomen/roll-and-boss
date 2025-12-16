@@ -4,6 +4,7 @@
 #ifndef BOSS_FIGHT
 #define BOSS_FIGHT
 
+
 struct Boss{
     int health;
     int power;
@@ -21,7 +22,7 @@ float Scale[] = {1.25,1.5,1.75,2};
 
 
 
-Player bossFight(Player player, Display screen){
+Player bossFight(Player player){
 
     //pick a boss in the boss list
     //initilaize the fight
@@ -45,16 +46,17 @@ Boss bossInit(Boss boss, Player player, int powerScale, int healthScale){
     return boss;
 }
 
-// Boss initOddCold (Player player){
-//     Boss oddcold = bossInit(oddcold, player, MEDIUM, HARD);
+Boss initOddCold (Player player){
+    Boss oddcold = bossInit(oddcold, player, MEDIUM, HARD);
 
 
-//     return oddcold;
-// }
+    return oddcold;
+}
 
-// Boss evengelion(Player player){
-//     Boss evengelion = bossInit(evengelion,player,MEDIUM,HARD);
+Boss evengelion(Player player){
+    Boss evengelion = bossInit(evengelion,player,MEDIUM,HARD);
 
-//     return evengelion;
-// }
+    return evengelion;
+}
+
 #endif

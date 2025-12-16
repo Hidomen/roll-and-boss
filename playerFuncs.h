@@ -15,7 +15,7 @@ Player nextCurrent(Player player){
 }
 
 
-Player classChoose(Player player,Display screen){
+Player classChoose(Player player){
 
     const int classSize = 5;
 
@@ -30,7 +30,7 @@ Player classChoose(Player player,Display screen){
 
 
 
-    screen.classChoice(player,screen);
+    displayClassChoice(player);
 
     //first four classes
     switch(option){
@@ -74,11 +74,11 @@ Player classChoose(Player player,Display screen){
 }
 
 
-Player roll(Player player, Display screen, int max){
+void roll(Player *player, int max){
     
     int rolledNum = getRandom(max);
     
-    screen.roll(player,rolledNum);
+    displayRoll(*player,rolledNum);
         
     
     int rollDecision;
@@ -87,11 +87,11 @@ Player roll(Player player, Display screen, int max){
 
 
     if(rollDecision == 1){
-        player.playerList.arr[player.current] = rolledNum;
+        player->playerList.arr[player->current] = rolledNum;
     }
-    player = nextCurrent(player);
+    *player = nextCurrent(*player);
     
-    return player;
+    // return player;
 }
 
 
