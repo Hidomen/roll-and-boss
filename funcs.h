@@ -15,16 +15,35 @@ int getRandom(int max){
 }
 
 //gets numerical inputs within the interval given
-int getInput(int input, int minValue, int maxValue){
-    do{
-        cin >> input;
-    }while(!(input >= minValue && input <= maxValue));
+void getInput(int *input, int minValue, int maxValue){
 
-    return input;
+    do{
+        cin >> *input;
+    }while(!(*input >= minValue && *input <= maxValue));
 }
 
 
+void getInputAdvanced(){
+    while(true){
+        for(int i = 0; i < 300; i++){
+            if(GetAsyncKeyState(i) & 0b1){
 
+                if(std::isupper(i)){
+                    cout << (char)i;
+                }
+                else if (i == VK_ESCAPE){
+                    cout << "[ESCAPE]";
+                }
+                else if (i == VK_RETURN){
+                    cout << "[ENTER]";
+                }
+                else if (i == VK_BACK){
+                    cout << "[BACKSPACE]";
+                }
+            }
+        }
+    }
+}
 
 
 

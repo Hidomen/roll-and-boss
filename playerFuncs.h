@@ -7,41 +7,40 @@
 #define PLAYERFUNCS_H
 
 
-Player nextCurrent(Player player){
+void nextCurrent(Player *player){
     
-    player.current = ((player.current + 1) % player.listLength);
-    
-    return player;
+    player->current = ((player->current + 1) % player->listLength);
 }
 
 
-Player classChoose(Player player){
+void classChoose(Player *player){
 
     const int classSize = 5;
 
     int option,newNum;
 
-    do{
-        cin >> option;
+    // do{
+    //     cin >> option;
+    // }while(option > classSize || option <= 0);
 
-    }while(option > classSize || option <= 0);
+    getInput(&option,0,classSize);
  
-    player.pClass = (playerClass) option;
+    player->pClass = (playerClass) option;
 
 
 
-    displayClassChoice(player);
+    displayClassChoice(*player);
 
     //first four classes
     switch(option){
         // Oddian Class - Random Odds - ListSize: 10
         case ODDIAN_INDEX:
-            player = cOddian(player);
+            cOddian(player);
             break;
 
         // Evengelion Class - Random Evens - listSize: 10
         case EVENGELION_INDEX:
-            player = cEvengelion(player);
+            cEvengelion(player);
             break;
 
         // Prime Class - Random Prime - listSize: 7
@@ -54,7 +53,7 @@ Player classChoose(Player player){
 
         // Listed Class - 1 to 20 - listSize: 20
         case LISTED_INDEX:
-            player = cListed(player);
+            cListed(player);
             break;
 
             
@@ -69,8 +68,6 @@ Player classChoose(Player player){
     // VampireLord Class - range of numbers in start 50 to 100 - each turn max num becomes (-1) - ListSize: 13
     // Herd Class - Random Fill - *0.5 power - listSize: 50
     // Power Class - Random Fill - If a num. hits a boss, power *1.5 - listSize: 10 
-
-    return player;
 }
 
 
@@ -83,28 +80,27 @@ void roll(Player *player, int max){
     
     int rollDecision;
     //validity check (make a warning message)
-    rollDecision = getInput(rollDecision,0,1);
+    getInput(&rollDecision,0,1);
 
 
     if(rollDecision == 1){
         player->playerList.arr[player->current] = rolledNum;
     }
-    *player = nextCurrent(*player);
+    nextCurrent(player);
     
     // return player;
 }
 
 
-Player cellCheck(Player player){
-    player.remainingCell = 0;
+void cellCheck(Player *player){
+    player->remainingCell = 0;
 
-    for(int i = 0; i < player.listLength; i++){
-        if(player.playerList.arr[player.current] > 0){
-            player.remainingCell++;
+    for(int i = 0; i < player->listLength; i++){
+        if(player->playerList.arr[player->current] > 0){
+            player->remainingCell++;
         }
     }
 
-    return player;
 }
 
 

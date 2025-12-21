@@ -5,6 +5,8 @@
 #include "playerFuncs.h"
 #include "display.h"
 
+#define S_01 1000 //sleep 1, a little
+
 bool isVampActive(Player player){
     for(int i = 0; i < player.listLength; i++){
         if(player.playerList.arr[i] < 0){
@@ -14,56 +16,57 @@ bool isVampActive(Player player){
     return false;
 }
 
-Player numberShop(Player player){
+void numberShop(Player *player){
     int slots[3];
     int selection;
 
 
     const int numberCost = 3;
 
-    if(player.money >= numberCost){
+    if(player->money >= numberCost){
         
         slots[0] = getRandom(MAX_NUMBER);
         slots[1] = getRandom(MAX_NUMBER);
         slots[2] = getRandom(MAX_NUMBER);
         
         //selection
-        displayNumberShop(player, slots);
+        displayNumberShop(*player, slots);
         
-        selection = getInput(selection, 0, 3);
+        getInput(&selection, 0, 3);
 
         //didnt select any of the number and didnt update current
         if(selection == 0){
-            return player;
+            return;
         } else { //purchased
             
-            player.playerList.arr[player.current] = slots[selection - 1];
+            player->playerList.arr[player->current] = slots[selection - 1];
             
-            player.money = player.money - numberCost;
-            player = nextCurrent(player);
+            player->money = player->money - numberCost;
+            
+            nextCurrent(player);
         }
 
     }else{
 
 
         cout << "GET THE HELL OUT OF HERE FILTHY POOR" << endl;
-        getInput(selection, 1, 1);
+        // getInput(&selection, 1, 1);
+        Sleep(S_01);
     }
 
-    return player;
 }
 
 
 #define P_NUMBER_SHOP 70
 //
-Player shop(Player player){
-    bool vamp = isVampActive(player);
+void shop(Player *player){
+    bool vamp = isVampActive(*player);
 
     int probability = getRandom(100); //100 based probability
 
     if(probability < P_NUMBER_SHOP){
         //classic number shop ~ choose a new to add it current index
-        player = numberShop(player);
+        numberShop(player);
         // player.playerList.arr[player.current] = selected;
     } else {
         //attrib or vamp shop
@@ -75,7 +78,4 @@ Player shop(Player player){
         }
 
     }
-
-
-    return player;
 }

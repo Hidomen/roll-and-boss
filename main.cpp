@@ -39,8 +39,8 @@ int main(){
         roll(&player, MAX_NUMBER);
 
 
-        // updateScreen(player);
-        // player = shop(player);
+        updateScreen(player);
+        shop(&player);
 
         // clearScreen();
         //Action
@@ -50,7 +50,7 @@ int main(){
         // player = bossFight(player);
         // bossFight(player, screen);
 
-        player = cellCheck(player);
+        cellCheck(&player);
         player.turnNumber++;
 
     }
